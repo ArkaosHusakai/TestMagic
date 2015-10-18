@@ -6,10 +6,10 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
-import org.bukkit.entity.Snowball;
+import org.bukkit.entity.Lightning;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.ItemStack;
+
 
 /*
  * To change this template, choose Tools | Templates
@@ -19,13 +19,13 @@ import org.bukkit.inventory.ItemStack;
  *
  * @author Sven
  */
-public class snowballmagic extends MagePluginEvent {
+public class lightning magic extends MagePluginEvent {
 
     HashMap<Player, ItemStack> lastActiveItem = new HashMap<Player, ItemStack>();
 
     @Override
     public boolean callPlayerInteractEvent(PlayerInteractEvent event, Integer level) {
-        event.getPlayer().launchProjectile(Snowball.class);
+        event.getPlayer().launchProjectile(lightning.class);
         event.getPlayer().sendMessage("Mana decreesed!");
         lastActiveItem.put(event.getPlayer(), event.getItem());
         return true;
@@ -39,7 +39,7 @@ public class snowballmagic extends MagePluginEvent {
                 Entity tar = proj.getNearbyEntities(1, 1, 1).get(0);
                 if (tar instanceof LivingEntity) {
                     LivingEntity target = (LivingEntity) tar;
-                    target.damage(2, proj.getShooter());
+                    target.damage(7, proj.getShooter());
                 }
             }
         }
